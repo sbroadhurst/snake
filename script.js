@@ -39,7 +39,7 @@ var gameEnd = false
 var level = 1
 var maxLevel = 5
 var count = 0
-var countDown = 10 * 60
+var countDown = 20 * 60
 
 //database and score
 let scoreBoard = []
@@ -235,7 +235,10 @@ function drawGameEndScreen() {
 
   //// will be used for when we enter a name
   document.addEventListener('keydown', function(evt) {
-    if (evt.keyCode < 65 || evt.keyCode > 90) {
+    if (event.code == 'Enter') {
+      countDown = 1
+    }
+    if ((evt.keyCode < 65 && evt.keyCode !== 8) || evt.keyCode > 90) {
       evt.preventDefault()
     }
   })
