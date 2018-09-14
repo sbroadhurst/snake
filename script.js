@@ -39,16 +39,50 @@ var gameEnd = false
 var level = 1
 var maxLevel = 5
 var count = 0
-var countDown = 5 * 60
+var countDown = 10 * 60
 
 //database and score
 let scoreBoard = []
 var database = firebase.database()
-var ref = database.ref('snake').orderByChild('score')
-// .limitToFirst(10)
+var ref = database
+  .ref('snake')
+  .orderByChild('order')
+  .limitToFirst(10)
+
+function sortData(data, attr) {
+  var arr = []
+  for (var prop in data) {
+    if (data.hasOwnProperty(prop)) {
+      var obj = {}
+      obj[prop] = data[prop]
+      obj.tempSortName = data[prop][attr]
+      arr.push(obj)
+    }
+  }
+
+  arr.sort(function(a, b) {
+    var at = a.tempSortName,
+      bt = b.tempSortName
+    return at > bt ? 1 : at < bt ? -1 : 0
+  })
+
+  var result = []
+  for (var i = 0, l = arr.length; i < l; i++) {
+    var obj = arr[i]
+    delete obj.tempSortName
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        var id = prop
+      }
+    }
+    var item = obj[id]
+    result.push(item)
+  }
+  return result
+}
 
 function gotData(data) {
-  scoreBoard = data.val()
+  scoreBoard = sortData(data.val(), 'order')
 }
 
 function errData(err) {
