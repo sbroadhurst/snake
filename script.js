@@ -297,16 +297,16 @@ function drawSnakeGame() {
 
     snake.unshift(newHead)
 
-    if (score === levelScore) {
-      level++
-      levelScore += 5
-      speed -= 5
-      grd.clearRect(0, 0, grid.width, grid.height)
-      // leftPressed = false
-      // rightPressed = false
-      // upPressed = false
-      // downPressed = false
-    }
+    // if (score === levelScore) {
+    //   level++
+    //   levelScore += 5
+    //   speed -= 5
+    //   grd.clearRect(0, 0, grid.width, grid.height)
+    //   // leftPressed = false
+    //   // rightPressed = false
+    //   // upPressed = false
+    //   // downPressed = false
+    // }
   }
 }
 setInterval(drawSnakeGame, speed)
