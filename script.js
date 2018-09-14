@@ -229,7 +229,7 @@ function drawGameEndScreen() {
   ctx.fillText('Final Score = ' + score, 280, 190)
   ctx.fillText('Enter name: ', 280, 215)
   nameBox.style.display = 'block'
-  // drawScoreBoard()
+  drawScoreBoard()
   drawCountDown()
 
   //// will be used for when we enter a name
@@ -243,13 +243,13 @@ function drawGameEndScreen() {
     var data = {
       name: nameBox.value,
       score: score,
-      order: 999 - score
+      order: -1 * score
     }
 
-    // database
-    //   .ref()
-    //   .child('snake')
-    //   .push(data)
+    database
+      .ref()
+      .child('snake')
+      .push(data)
 
     document.location.reload()
   }
