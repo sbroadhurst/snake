@@ -184,6 +184,7 @@ function drawStartScreen() {
   ctx.fillText('Snake!', x / 2 - 140, 150)
   ctx.font = '20px ArcadeClassic'
   ctx.fillText('Press ENTER to start or pause the game', 155, 190)
+  drawScoreBoard()
 
   // startButton()
 }
