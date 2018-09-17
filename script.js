@@ -89,7 +89,20 @@ function errData(err) {
   console.log('Error: ' + err)
 }
 
+function checkFood() {
+  //checks to see if new food is on snake, makes a new food if true
+  snake.forEach(element => {
+    if (food.x === element.x && food.y === element.y) {
+      return (food = {
+        x: Math.floor(Math.random() * 17 + 1) * box,
+        y: Math.floor(Math.random() * 15 + 3) * box
+      })
+    }
+  })
+}
+
 function drawFood() {
+  checkFood()
   grd.beginPath()
   grd.rect(food.x, food.y, box, box)
   grd.fillStyle = 'blue'
@@ -268,7 +281,6 @@ function draw() {
     drawGameEndScreen()
     grd.clearRect(0, 0, grid.width, grid.height)
   } else {
-    //draw food
     drawScore()
     drawLevel()
 
@@ -289,6 +301,20 @@ function drawSnakeGame() {
     //head
     let snakeX = snake[0].x
     let snakeY = snake[0].y
+    //wall collision
+    if (snakeX === -box) {
+      snakeX = 19 * box
+    }
+    if (snakeX > 19 * box) {
+      snakeX = -box
+    }
+    if (snakeY === -box) {
+      snakeY = 19 * box
+    }
+    if (snakeY > 19 * box) {
+      snakeY = -box
+    }
+    //movement
 
     if (rightPressed) {
       snakeX += box
@@ -305,6 +331,8 @@ function drawSnakeGame() {
     if (upPressed) {
       snakeY -= box
     }
+    //food collision
+
     if (snakeX == food.x && snakeY == food.y) {
       score++
       food = {
@@ -321,17 +349,21 @@ function drawSnakeGame() {
       x: snakeX,
       y: snakeY
     }
-
-    //wall collision
-    if (
-      snakeX < -box ||
-      snakeX > 19 * box ||
-      snakeY < -box ||
-      snakeY > 19 * box ||
-      collisionDetection(newHead, snake)
-    ) {
+    //tail collision
+    if (collisionDetection(newHead, snake)) {
       gameEnd = true
     }
+
+    //wall collision
+    //if (
+    //   snakeX < -box ||
+    //   snakeX > 19 * box ||
+    //   snakeY < -box ||
+    //   snakeY > 19 * box ||
+    //   collisionDetection(newHead, snake)
+    // ) {
+    //   gameEnd = true
+    // }
 
     snake.unshift(newHead)
 
