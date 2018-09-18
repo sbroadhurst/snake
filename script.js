@@ -302,7 +302,6 @@ function drawSnakeGame() {
     let snakeX = snake[0].x
     let snakeY = snake[0].y
     //wall collision
-    console.log(snakeX, snakeY)
     if (snakeX < 0) {
       snakeX = 576
     }
