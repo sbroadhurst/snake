@@ -24,7 +24,7 @@ var food = {
 
 let speed = 100
 var levelScore = 3
-var rightPressed = false
+var rightPressed = true
 var leftPressed = false
 var upPressed = false
 var downPressed = false
@@ -302,17 +302,18 @@ function drawSnakeGame() {
     let snakeX = snake[0].x
     let snakeY = snake[0].y
     //wall collision
-    if (snakeX === -box) {
-      snakeX = 19 * box
+    console.log(snakeX, snakeY)
+    if (snakeX < 0) {
+      snakeX = 576
     }
-    if (snakeX > 19 * box) {
-      snakeX = -box
+    if (snakeX > 576) {
+      snakeX = 0
     }
-    if (snakeY === -box) {
-      snakeY = 19 * box
+    if (snakeY < 0) {
+      snakeY = 576
     }
-    if (snakeY > 19 * box) {
-      snakeY = -box
+    if (snakeY > 576) {
+      snakeY = 0
     }
     //movement
 
