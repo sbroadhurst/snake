@@ -14,15 +14,15 @@ var snakeDy = 0
 var snake = []
 snake[0] = {
   x: 9 * box,
-  y: 10 * box
+  y: 10 * box,
 }
 
 var food = {
   x: Math.floor(Math.random() * 17 + 1) * box,
-  y: Math.floor(Math.random() * 15 + 3) * box
+  y: Math.floor(Math.random() * 15 + 3) * box,
 }
 
-let speed = 100
+var speed = 100
 var levelScore = 3
 var rightPressed = true
 var leftPressed = false
@@ -42,12 +42,9 @@ var count = 0
 var countDown = 20 * 60
 
 //database and score
-let scoreBoard = []
+var scoreBoard = []
 var database = firebase.database()
-var ref = database
-  .ref('snake')
-  .orderByChild('order')
-  .limitToFirst(10)
+var ref = database.ref('snake').orderByChild('order').limitToFirst(10)
 
 function sortData(data, attr) {
   var arr = []
@@ -60,7 +57,7 @@ function sortData(data, attr) {
     }
   }
 
-  arr.sort(function(a, b) {
+  arr.sort(function (a, b) {
     var at = a.tempSortName,
       bt = b.tempSortName
     return at > bt ? 1 : at < bt ? -1 : 0
@@ -91,11 +88,11 @@ function errData(err) {
 
 function checkFood() {
   //checks to see if new food is on snake, makes a new food if true
-  snake.forEach(element => {
+  snake.forEach((element) => {
     if (food.x === element.x && food.y === element.y) {
       return (food = {
         x: Math.floor(Math.random() * 17 + 1) * box,
-        y: Math.floor(Math.random() * 15 + 3) * box
+        y: Math.floor(Math.random() * 15 + 3) * box,
       })
     }
   })
@@ -111,7 +108,7 @@ function drawFood() {
 }
 
 function drawSnake() {
-  snake.forEach(element => {
+  snake.forEach((element) => {
     grd.beginPath()
     grd.rect(element.x, element.y, box, box)
     grd.fillStyle = 'white'
@@ -123,7 +120,7 @@ function drawSnake() {
 document.addEventListener('keydown', keyDownHandler)
 window.addEventListener(
   'keydown',
-  function(e) {
+  function (e) {
     // space and arrow keys
     if ([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
       e.preventDefault()
@@ -257,7 +254,7 @@ function drawGameEndScreen() {
   drawCountDown()
 
   //// will be used for when we enter a name
-  document.addEventListener('keydown', function(evt) {
+  document.addEventListener('keydown', function (evt) {
     if (event.code == 'Enter') {
       countDown = 1
     }
@@ -270,13 +267,10 @@ function drawGameEndScreen() {
     var data = {
       name: nameBox.value,
       score: score,
-      order: -1 * score
+      order: -1 * score,
     }
 
-    database
-      .ref()
-      .child('snake')
-      .push(data)
+    database.ref().child('snake').push(data)
 
     document.location.reload()
   }
@@ -347,7 +341,7 @@ function drawSnakeGame() {
       score++
       food = {
         x: Math.floor(Math.random() * 17 + 1) * box,
-        y: Math.floor(Math.random() * 15 + 3) * box
+        y: Math.floor(Math.random() * 15 + 3) * box,
       }
     } else {
       //remove tail
@@ -357,7 +351,7 @@ function drawSnakeGame() {
     // new head
     let newHead = {
       x: snakeX,
-      y: snakeY
+      y: snakeY,
     }
     //tail collision
     if (collisionDetection(newHead, snake)) {
