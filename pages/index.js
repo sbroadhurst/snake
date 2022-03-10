@@ -30,6 +30,7 @@ function HomePage() {
         <canvas id="grid" width="608px" height="608px"></canvas>
       </div>
 
+      <Script type="text/javascript" src="script.js" strategy="afterInteractive"></Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.js"></Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></Script>
     </div>
