@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Script from 'next/script'
+import Head from 'next/head'
 
 function HomePage() {
   // Initialize Firebase
@@ -18,10 +19,15 @@ function HomePage() {
 
   return (
     <div>
+      <Head>
+        <title>Snake Game</title>
+        <meta name="snake game" content="Snake game with added Nextjs" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
-      <Script></Script>
 
       <div id="main">
         <div id="arcade"></div>
@@ -31,8 +37,8 @@ function HomePage() {
       </div>
 
       <Script type="text/javascript" src="script.js" strategy="afterInteractive"></Script>
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.js"></Script>
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></Script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     </div>
   )
 }
